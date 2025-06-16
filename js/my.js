@@ -100,16 +100,16 @@ registerBtn1.onclick = async (e) => {
         lastname: "Иванов",
         email: "ivan.ivanov@example.com",
         phone: "+380123456789",
-        affiliation: "Партнёр",
-        source: "Google Ads",
+        affiliation: "5",
+        source: "",
         country: "UA" // ISO 3166 код страны
     };
-
+    const token = "Yd6Pwey22bPXOybZhW98ub2ZI3KqBEB4xpvtUIVX"
     fetch('https://investpro.finance/api/margot', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-AUTH-TOKEN': 'YZ3xAVFA2EU2e9uDd4IuTufp0PV8WeSZ8gXVLdjs',
+            'X-Auth-Token': token
 
             // 'Accept': 'application/json',
             // 'Authorization': 'Bearer YZ3xAVFA2EU2e9uDd4IuTufp0PV8WeSZ8gXVLdjs'
