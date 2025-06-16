@@ -18,14 +18,14 @@ const email = document.querySelector('#email1')
 
 
 const isTestBTN = () => {
-    if (checkbox0path.checked) return registerBtn1.classList.add('wf-btn--disabled')
-    if (checkbox1path.checked) return registerBtn1.classList.add('wf-btn--disabled')
-    if (checkbox2path.checked) return registerBtn1.classList.add('wf-btn--disabled')
+    if (!checkbox0.checked) return registerBtn1.classList.add('wf-btn--disabled')
+    if (!checkbox1.checked) return registerBtn1.classList.add('wf-btn--disabled')
+    if (!checkbox2.checked) return registerBtn1.classList.add('wf-btn--disabled')
     if (firstName.value.trim() === '') return registerBtn1.classList.add('wf-btn--disabled')
     if (lastName.value.trim() === '') return registerBtn1.classList.add('wf-btn--disabled')
 
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!re.test(email.value)) return registerBtn1.classList.add('wf-btn--disabled')
+    if (!re.test(email.value)) return registerBtn1.classList.add('wf-btn--disabled')
 
     if (phonett1.value.trim().length <= 8) return registerBtn1.classList.add('wf-btn--disabled')
 
@@ -90,8 +90,75 @@ iti__flagcontainer1.onclick = (e) => {
 
 
 
+const apiLead = 'https://investpro.finance/api/margot';
 
-registerBtn1.onclick = (e) => {
-    e.preventDefault()
-    window.location.href = 'https://thanks-en.zenstryde.store/'
+registerBtn1.onclick = async (e) => {
+    e.preventDefault();
+
+    const leadData = {
+        firstname: "Иван",
+        lastname: "Иванов",
+        email: "ivan.ivanov@example.com",
+        phone: "+380123456789",
+        affiliation: "Партнёр",
+        source: "Google Ads",
+        country: "UA" // ISO 3166 код страны
+    };
+
+    fetch('https://investpro.finance/api/margot', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-AUTH-TOKEN': 'YZ3xAVFA2EU2e9uDd4IuTufp0PV8WeSZ8gXVLdjs',
+
+            // 'Accept': 'application/json',
+            // 'Authorization': 'Bearer YZ3xAVFA2EU2e9uDd4IuTufp0PV8WeSZ8gXVLdjs'
+        },
+        body: JSON.stringify(leadData)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Ошибка HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Лид успешно отправлен:', data);
+        })
+        .catch(error => {
+            console.error('Ошибка при отправке лида:', error);
+        });
+
+
+    // const formData = new FormData();
+    // formData.append("name", "Ivan");
+    // formData.append("lastName", "Petrov");
+    // formData.append("email", "ivan@example.com");
+    // formData.append("phone", "+380991234567");
+    // try {
+    //     const res = await fetch("https://script.google.com/macros/s/AKfycbyvUtpzuR3mVCXd2LWhepli3mxiJJwhWDmMTpGC2Qp8z1AktiTDqMCrjco1IVwne0DI/exec", {
+    //     // const res = await fetch("https://script.google.com/macros/s/AKfycbyvUtpzuR3mVCXd2LWhepli3mxiJJwhWDmMTpGC2Qp8z1AktiTDqMCrjco1IVwne0DI/exec", {
+    //         method: "POST",
+    //         body: formData,
+    //         mode: "no-cors"
+    //     });
+
+    //     const result = res
+    //     // const result = await res.json();
+    //     console.log(result);
+    //     // alert("✅ Данные успешно отправлены в таблицу!");
+    // } catch (err) {
+    //     console.error("❌ Ошибка при отправке:", err);
+    //     // alert("Произошла ошибка при отправке.");
+    // }
+
+    // ------------
+    // ------------
+
+// Параметры запроса — меняй при необходимости
+
+
+
+
+    // window.location.href = 'https://thanks-en.zenstryde.store/'
 }
