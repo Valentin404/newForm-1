@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+
+reg-form-container[id="f31aee6c-2366-4936-bbac-0243ecb09a49"] > reg-form-plus {
+	--reg-form-background-padding: 32px;
+	--reg-form-background-background-color: rgba(255,255,255,1);
+	--reg-form-background-border-width: 0px;
+	--reg-form-background-border-color: rgba(255,255,255,1);
+	--reg-form-background-border-radius: 16px;
+	--reg-form-background-shadow-color: rgba(250,245,245,0.89);
+	--reg-form-background-shadow-blur: 25px;
+	--reg-form-title-size: 22px;
+	--reg-form-title-weight: 700;
+	--reg-form-title-color: rgba(0,63,232,1);
+	--reg-form-title-width: 100%;
+	--reg-form-subtitle-size: 18px;
+	--reg-form-subtitle-weight: 500;
+	--reg-form-subtitle-color: rgba(0,0,0,1);
+	--reg-form-subtitle-width: 100%;
+	--reg-form-field-background-color: rgba(0,0,0,0);
+	--reg-form-field-height: 50px;
+	--reg-form-field-border-width: 1px;
+	--reg-form-field-border-color: rgba(0,0,0,0.20);
+	--reg-form-field-border-color-hover: rgba(0,0,0,0.40);
+	--reg-form-field-border-color-focus: rgba(0,0,0,0.40);
+	--reg-form-field-border-radius: 4px;
+	--reg-form-field-color: rgba(0,0,0,1);
+	--reg-form-field-placeholder-color: rgba(0,0,0,0.60);
+	--reg-form-field-row-gap: 4px;
+	--reg-form-field-column-gap: 16px;
+	--reg-form-field-column: 1;
+	--reg-form-checkbox-size: 16px;
+	--reg-form-checkbox-label-color: rgba(0,63,232,1);
+	--reg-form-checkbox-weight: 700;
+	--reg-form-checkboxes-privacy-terms-link-color: rgba(255,0,0,1);
+	--reg-form-checkbox-color: rgba(0,0,0,1);
+	--reg-form-checkbox-color-checked: rgba(0,0,0,1);
+	--reg-form-checkbox-circle-color: rgba(0,0,0,0.12);
+	--reg-form-button-size: 20px;
+	--reg-form-button-weight: 700;
+	--reg-form-button-text-color: rgba(255,255,255,1);
+	--reg-form-button-height: 60px;
+	--reg-form-button-color: rgba(0,63,232,1);
+	--reg-form-button-color-hover: rgba(37,48,145,1);
+	--reg-form-button-color-active: rgba(13,25,133,1);
+	--reg-form-button-border-width: 0px;
+	--reg-form-button-border-color: rgba(0,0,0,0);
+	--reg-form-button-border-radius: 100px;
+	--reg-form-button-shadow-color: rgba(7,51,247,0.87);
+	--reg-form-button-shadow-blur: 25px;
+	--reg-form-country-list-text-color: rgba(0,0,0,1);
+	--reg-form-verify-button-text-color: rgba(0,0,0,0.60);
+	--reg-form-verify-button-text-color-hover: rgba(0,0,0,1);
+	--reg-form-general-font-family: "Inter";
+}
+.reg-form-container-loader { position: relative; display: flex; justify-content: center; align-items: center; width: 100%; height: 400px; background-color: white; } .reg-form-container-loader::before { content: ''; width: 50px; height: 50px; border: 7px solid #9c9999; border-top: 7px solid #009aff; border-radius: 50%; animation: spin 1.5s linear infinite; } @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
