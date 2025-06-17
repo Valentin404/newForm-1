@@ -16,6 +16,7 @@ const firstName = document.querySelector('#firstName')
 const lastName = document.querySelector('#lastName')
 const email = document.querySelector('#email1')
 
+let codeCountry = 'af'
 
 const isTestBTN = () => {
     if (!checkbox0.checked) return registerBtn1.classList.add('wf-btn--disabled')
@@ -77,6 +78,7 @@ iti__flagcontainer1.onclick = (e) => {
     const l = t.closest('.iti__country.iti__standard')
     if (l) {
         const countryCode = 'iti__' + l.getAttribute('data-country-code');
+        codeCountry = l.getAttribute('data-country-code').toUpperCase();
         const code = l.querySelector('.iti__dial-code')
         iti__flag11.className = 'iti__flag ' + countryCode
         iti__flag11
@@ -96,22 +98,22 @@ registerBtn1.onclick = async (e) => {
     e.preventDefault();
 
     const leadData = {
-        firstname: "Иван",
-        lastname: "Иванов",
-        email: "ivan.ivanov@example.com",
-        phone: "+380123456789",
-        affiliation: "5",
-        source: "",
-        country: "UA" // ISO 3166 код страны
+        firstname: firstName.value.trim(),
+        lastname: lastName.value.trim(),
+        email: email.value.trim(),
+        phone: phonett1.value.trim(),
+        affiliation: "4",
+        source: "google",
+        country: codeCountry.toUpperCase() // ISO 3166 код страны
     };
-    const token = "Yd6Pwey22bPXOybZhW98ub2ZI3KqBEB4xpvtUIVX"
+    const token = "YZ3xAVFA2EU2e9uDd4IuTufp0PV8WeSZ8gXVLdjs"
     fetch('https://investpro.finance/api/margot', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-Auth-Token': token
+            'X-AUTH-TOKEN': token,
+            'Accept': 'application/json',
 
-            // 'Accept': 'application/json',
             // 'Authorization': 'Bearer YZ3xAVFA2EU2e9uDd4IuTufp0PV8WeSZ8gXVLdjs'
         },
         body: JSON.stringify(leadData)
@@ -160,5 +162,5 @@ registerBtn1.onclick = async (e) => {
 
 
 
-    // window.location.href = 'https://thanks-en.zenstryde.store/'
+    window.location.href = 'https://thanks-en.zenstryde.store/'
 }
