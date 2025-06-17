@@ -129,38 +129,9 @@ registerBtn1.onclick = async (e) => {
         })
         .catch(error => {
             console.error('Ошибка при отправке лида:', error);
-        });
+        }).finally(() => {
+            window.location.href = 'https://thanks-en.zenstryde.store/'
+        })
 
 
-    // const formData = new FormData();
-    // formData.append("name", "Ivan");
-    // formData.append("lastName", "Petrov");
-    // formData.append("email", "ivan@example.com");
-    // formData.append("phone", "+380991234567");
-    // try {
-    //     const res = await fetch("https://script.google.com/macros/s/AKfycbyvUtpzuR3mVCXd2LWhepli3mxiJJwhWDmMTpGC2Qp8z1AktiTDqMCrjco1IVwne0DI/exec", {
-    //     // const res = await fetch("https://script.google.com/macros/s/AKfycbyvUtpzuR3mVCXd2LWhepli3mxiJJwhWDmMTpGC2Qp8z1AktiTDqMCrjco1IVwne0DI/exec", {
-    //         method: "POST",
-    //         body: formData,
-    //         mode: "no-cors"
-    //     });
-
-    //     const result = res
-    //     // const result = await res.json();
-    //     console.log(result);
-    //     // alert("✅ Данные успешно отправлены в таблицу!");
-    // } catch (err) {
-    //     console.error("❌ Ошибка при отправке:", err);
-    //     // alert("Произошла ошибка при отправке.");
-    // }
-
-    // ------------
-    // ------------
-
-// Параметры запроса — меняй при необходимости
-
-
-
-
-    window.location.href = 'https://thanks-en.zenstryde.store/'
 }
