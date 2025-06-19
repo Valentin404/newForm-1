@@ -113,6 +113,8 @@ registerBtn1.onclick = async (e) => {
     leadData.clickid = clickid;
   }
 
+  sendPostback(registerBtn1, e, 'replace', 2, Date.now())
+
     fetch('https://investpro.finance/api/margot', {
         method: 'POST',
         headers: {

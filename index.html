@@ -89,10 +89,10 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/ion.rangeSlider.min.js"></script>
     <script src="js/script.js"></script>
+    
     <script>
       const params = new URLSearchParams(window.location.search);
       const clickid = params.get("external_id");
-      console.log('sss',clickid)
       if (clickid) {
         localStorage.setItem("clickid", clickid);
       }
@@ -133,5 +133,6 @@
         }
       })();
     </script>
+    
   </body>
 </html>

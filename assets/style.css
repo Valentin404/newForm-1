@@ -4368,3 +4368,6 @@ div.wpforms-container-full input[type=date],div.wpforms-container-full input[typ
 .iti__country.iti__standard:hover  {
     background-color: rgb(235, 235, 235);
 }
+.link-hidden {
+    display: none;
+}

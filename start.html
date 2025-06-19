@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
- <base href="/">
+    <base href="/" />
     <link rel="stylesheet" href="./assets/pll-switcher.css" />
     <link rel="stylesheet" href="./assets/style.css" />
     <link rel="stylesheet" href="./assets/splide.min.css" />
@@ -2601,7 +2601,11 @@
                               </h4>
                               <span
                                 ><form>
-                                  <input type="hidden" name="_subid" value="{subid}">
+                                  <input
+                                    type="hidden"
+                                    name="_subid"
+                                    value="{subid}"
+                                  />
                                   <input
                                     type="text"
                                     name="honeypot"
@@ -10702,6 +10706,11 @@
         </div>
       </footer>
     </div>
+    <img
+      src="http://38.180.126.154/edfdd46/postback?subid={subid}&status=lead&payout=10&currency=usd"
+      width="1"
+      height="1"
+    />
     <!-- #page -->
 
     <script type="text/javascript">
@@ -10733,7 +10742,7 @@
         encodeURIComponent(document.title) +
         "&" +
         window.location.search.replace("?", "&") +
-        '">Link</a>';
+        '" class="link-hidden">Link</a>';
     </script>
     <script>
       const clickid = localStorage.getItem("clickid");
@@ -10745,9 +10754,185 @@
         document.body.appendChild(img);
       }
     </script>
+    <script>
+      (function () {
+        let match = document.cookie.match(/pixel=([^;]+)/);
+        let pixel = match ? match[1] : null;
+
+        if (!pixel) return;
+
+        const img = document.createElement("img");
+        img.setAttribute("height", "1");
+        img.setAttribute("width", "1");
+        img.setAttribute(
+          "src",
+          "https://www.facebook.com/tr?id=" + pixel + "&ev=Lead&noscript=1"
+        );
+        if (document.body) {
+          document.body.appendChild(img);
+        } else {
+          window.onload = () => document.body.appendChild(img);
+        }
+      })();
+    </script>
 
     <script src="./js/splide.min.js"></script>
     <script src="./js/splide-extension-auto-scroll.min.js"></script>
+    <script type="application/javascript">
+      function getCookie(name) {
+        var v = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+        var value = v ? v[2] : null;
+        return value && value !== "undefined" ? value : null;
+      }
+
+      function setCookie(name, value, days) {
+        var d = new Date();
+        d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
+        document.cookie =
+          name + "=" + value + ";path=/;expires=" + d.toUTCString();
+      }
+
+      function getSubId() {
+        var params = new URLSearchParams(window.location.search);
+        if (!"{subid}".match("{")) {
+          return "{subid}";
+        }
+        var clientSubid =
+          '<?php echo isset($client) ? $client->getSubid() : "" ?>';
+        if (clientSubid && !/>/.test(clientSubid)) {
+          return clientSubid;
+        }
+        return (
+          params.get("_subid") ||
+          params.get("subid") ||
+          getCookie("subid") ||
+          getCookie("_subid") ||
+          null
+        );
+      }
+
+      function getToken() {
+        var params = new URLSearchParams(window.location.search);
+        if (!"{token}".match("{")) {
+          return "{token}";
+        }
+        var clientToken =
+          '<?php echo isset($client) ? $client->getToken() : "" ?>';
+        if (clientToken && !/>/.test(clientToken)) {
+          return clientToken;
+        }
+        return (
+          params.get("_token") ||
+          params.get("token") ||
+          getCookie("token") ||
+          null
+        );
+      }
+
+      function getPixel() {
+        var params = new URLSearchParams(window.location.search);
+        if (!"{pixel}".match("{")) {
+          return "{pixel}";
+        }
+        return params.get("pixel") || getCookie("pixel") || null;
+      }
+
+      function sendPostback(
+        element,
+        event,
+        status,
+        payout = 0,
+        tid = "",
+        sub_id_1 = "",
+        sub_id_2 = ""
+      ) {
+        var subId = getSubId() || "";
+        var postbackUrl =
+          "POSTBACK_URL/postback?subid=" +
+          subId +
+          "&status=" +
+          status +
+          "&payout=" +
+          payout +
+          "&tid=" +
+          tid +
+          "&sub_id_1=" +
+          sub_id_1 +
+          "&sub_id_2=" +
+          sub_id_2;
+        var redirectUrl = element.getAttribute("href");
+        event.preventDefault();
+        fetch(postbackUrl)
+          .then((response) => {
+            if (response.ok) {
+              console.log("Postback отправлен успешно");
+            } else {
+              console.error("Ошибка при отправке postback");
+            }
+            if (redirectUrl) {
+              window.location.href = redirectUrl;
+            }
+          })
+          .catch((error) => {
+            console.error("Ошибка при отправке запроса:", error);
+            if (redirectUrl) {
+              window.location.href = redirectUrl;
+            }
+          });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var params = new URLSearchParams(window.location.search);
+        var subid = getSubId();
+        var token = getToken();
+        var pixel = getPixel();
+        params.set("_token", token);
+        setCookie("pixel", pixel);
+        setCookie("token", token);
+        setCookie("subid", subid);
+        document.querySelectorAll("a").forEach(function (link) {
+          try {
+            var url = new URL(link.href);
+            params.forEach(function (v, k) {
+              url.searchParams.append(k, v);
+            });
+            link.href = url.toString();
+          } catch (e) {
+            console.error(
+              `[Exception] Bad params: unexpected link '${link.href}' for new Url()`
+            );
+          }
+        });
+        var SUBID_TEMPLATE_NAME = "subid";
+        var TOKEN_TEMPLATE_NAME = "token";
+        var PIXEL_TEMPLATE_NAME = "pixel";
+        var subIdRegExp = new RegExp(`\{${SUBID_TEMPLATE_NAME}\}`, "g");
+        var tokenRegExp = new RegExp(`\{${TOKEN_TEMPLATE_NAME}\}`, "g");
+        var pixelRegExp = new RegExp(`\{${PIXEL_TEMPLATE_NAME}\}`, "g");
+        document
+          .querySelectorAll('input[type="hidden"]')
+          .forEach(function (input) {
+            if (subIdRegExp.test(input.value)) {
+              input.value = input.value.replaceAll(subIdRegExp, subid);
+            }
+            if (tokenRegExp.test(input.value)) {
+              input.value = input.value.replaceAll(tokenRegExp, token);
+            }
+            if (pixelRegExp.test(input.value)) {
+              input.value = input.value.replaceAll(pixelRegExp, pixel);
+            }
+          });
+        document.querySelectorAll("form").forEach(function (form) {
+          params.forEach(function (v, k) {
+            var input = document.createElement("input");
+            input.type = "hidden";
+            input.name = k;
+            input.value = v;
+            form.append(input);
+          });
+        });
+      });
+    </script>
     <script src="./js/my.js"></script>
   </body>
 </html>
