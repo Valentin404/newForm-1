@@ -96,6 +96,7 @@ const apiLead = 'https://investpro.finance/api/margot';
 
 registerBtn1.onclick = async (e) => {
     e.preventDefault();
+    const clickid = localStorage.getItem('clickid');
 
     const leadData = {
         firstname: firstName.value.trim(),
@@ -107,6 +108,11 @@ registerBtn1.onclick = async (e) => {
         country: codeCountry.toUpperCase() // ISO 3166 код страны
     };
     const token = "Yd6Pwey22bPXOybZhW98ub2ZI3KqBEB4xpvtUIVX"
+
+  if (clickid) {
+    leadData.clickid = clickid;
+  }
+
     fetch('https://investpro.finance/api/margot', {
         method: 'POST',
         headers: {
