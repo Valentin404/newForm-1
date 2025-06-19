@@ -10738,7 +10738,8 @@
       const clickid = localStorage.getItem("clickid");
       if (clickid) {
         const img = document.createElement("img");
-        img.src = `https://quantumforger.com/postback?clickid=${clickid}&status=lead`;
+        // `https://your-keitaro-domain.com/postback?clickid=${encodeURIComponent(clickid)}&token=${encodeURIComponent(token)}`;
+        img.src = `https://quantumforger.com/postback?clickid=${clickid}&status=lead&token=sf3f5cpfjqdjtqk1dzjq3gpsrgw6zppj`;
         img.style.display = "none";
         document.body.appendChild(img);
       }

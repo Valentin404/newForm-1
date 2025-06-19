@@ -130,6 +130,7 @@ registerBtn1.onclick = async (e) => {
         .catch(error => {
             console.error('Ошибка при отправке лида:', error);
         }).finally(() => {
+            // https://quantumforger.com/7dnZJD?external_id={{fbclid}}&sub1=Yan&fbpx=PIXEL&placement={{placement}}&ad_name={{ad.name}}&adset_name={{adset.name}}
             window.location.href = 'https://thanks-en.zenstryde.store/'
         })
 

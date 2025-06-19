@@ -90,6 +90,7 @@
     <script>
       const params = new URLSearchParams(window.location.search);
       const clickid = params.get("external_id");
+      console.log('sss',clickid)
       if (clickid) {
         localStorage.setItem("clickid", clickid);
       }
