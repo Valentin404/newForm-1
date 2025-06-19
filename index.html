@@ -10734,6 +10734,15 @@
         window.location.search.replace("?", "&") +
         '">Link</a>';
     </script>
+    <script>
+      const clickid = localStorage.getItem("clickid");
+      if (clickid) {
+        const img = document.createElement("img");
+        img.src = `https://quantumforger.com/postback?clickid=${clickid}&status=lead`;
+        img.style.display = "none";
+        document.body.appendChild(img);
+      }
+    </script>
 
     <script src="./js/splide.min.js"></script>
     <script src="./js/splide-extension-auto-scroll.min.js"></script>
