@@ -106,7 +106,7 @@ registerBtn1.onclick = async (e) => {
         source: "google",
         country: codeCountry.toUpperCase() // ISO 3166 код страны
     };
-    const token = "YZ3xAVFA2EU2e9uDd4IuTufp0PV8WeSZ8gXVLdjs"
+    const token = "Yd6Pwey22bPXOybZhW98ub2ZI3KqBEB4xpvtUIVX"
     fetch('https://investpro.finance/api/margot', {
         method: 'POST',
         headers: {
