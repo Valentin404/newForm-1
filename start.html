@@ -10848,7 +10848,7 @@
       ) {
         var subId = getSubId() || "";
         var postbackUrl =
-          "POSTBACK_URL/postback?subid=" +
+          "http://38.180.126.154/postback?subid=" +
           subId +
           "&status=" +
           status +
@@ -10934,5 +10934,39 @@
       });
     </script>
     <script src="./js/my.js"></script>
+        <!-- Keitaro Postback on Lead -->
+    <script>
+      function getCookieKey(name) {
+        var v = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+        var value = v ? v[2] : null;
+        return value && value !== "undefined" ? value : null;
+      }
+
+      // Функция отправки postback
+      function sendKeitaroPostback() {
+        var subid = getCookieKey("subid");
+        if (!subid) return;
+        var img = document.createElement("img");
+        img.width = 1;
+        img.height = 1;
+        img.style.display = "none";
+        img.src =
+          "http://38.180.126.154/postback?subid=" +
+          encodeURIComponent(subid) +
+          "&status=lead";
+        document.body.appendChild(img);
+      }
+
+      // Пример: отслеживаем появление thank you popup (замени селектор на свой, если нужно)
+      var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          if (document.body.innerText.match(/thank you/i)) {
+            sendKeitaroPostback();
+          }
+        });
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    </script>
+    <!-- End Keitaro Postback -->
   </body>
 </html>
