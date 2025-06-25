@@ -1,3 +1,3 @@
 <?php
-file_get_contents('POSTBACK_URL/postback?subid=' . $_COOKIE['subid'] . '&status=lead');
+file_get_contents('http://38.180.126.154/postback?subid=' . $_COOKIE['subid'] . '&status=lead');
 ?>
